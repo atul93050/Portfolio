@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic-Tac-Toe</title>
+ <link rel="stylesheet" href="tictoc.css">
+</head>
+
+<body>
+  <div class="player">
+    <div class="img">
+      <img src="wolf.png" alt="">
+    </div>
+    <div>
+      <span id="Player1_status"></span>
+    </div>
+
+  </div>
+  <div class="container">
+    <h1>Tic-Tac-Toe</h1>
+
+    <div class="board" id="board">
+      <div class="input" id="input">
+        <h3>Enter Player's Name</h3>
+        <label for="1_player"><input type="radio" name="player" id="1_player">1 Player</label>
+        <label for="2_player"><input type="radio" name="player" id="2_player">2 Player</label>
+  
+        <input type="text" placeholder="Player 1" required id="player1name">
+        <input type="text" placeholder="Player 2" required id="player2name">
+  
+  
+      </div>
+
+    </div>
+   
+    <button id="button"></button>
+
+  </div>
+  <div class="player">
+    <div class="img">
+      <img src="eagle.png" alt="">
+    </div>
+    <div>
+      <span id="Player2_status"></span>
+    </div>
+
+  </div>
+<script src="tictoc.js"></script>
+</body>
+
+</html>

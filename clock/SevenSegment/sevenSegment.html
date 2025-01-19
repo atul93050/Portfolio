@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seven Segment Clock</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            font-size: 2rem;
+        }
+
+        .segment {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 3rem;
+            color: #FF0000;
+        }
+
+     
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hour segment">
+            <div class="digit"></div>
+            <div class="digit"></div>
+        </div>
+        <div class="minute segment">
+            <div class="digit"></div>
+            <div class="digit"></div>
+        </div>
+        <div class="second segment">
+            <div class="digit"></div>
+            <div class="digit"></div>
+        </div>
+    </div>
+
+ 
+</body>
+</html>

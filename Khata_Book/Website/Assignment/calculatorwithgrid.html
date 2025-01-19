@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Calculator
+
+    </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .orange {
+
+            background-color: #ff3800e0;
+
+        }
+
+        .green {
+            color: #33bea0;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            background: linear-gradient(45deg, #0a0a0a, #3a4452);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(7, 1fr);
+            border-radius: 25px;
+            row-gap: 10px;
+            border: 6px solid #2e2f323b;
+            outline: 9px red outset;
+            outline-offset: 15px;
+            outline-style: double;
+            place-items: center;
+            background: transparent;
+            box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+        }
+
+
+
+        .display {
+            grid-column: 1/5;
+            grid-row: 2/3;
+        }
+
+        .expression {
+            grid-column: 1/5;
+            grid-row: 1/2;
+        }
+
+        .expression input {
+            width: 320px;
+            height: 50px;
+            background: transparent;
+            cursor: pointer;
+            padding: 10px;
+            text-align: right;
+            outline: none;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+            border: 5px solid #1c1c1cd6;
+            border-radius: 10px;
+            box-shadow: -5px -6px 15px #000 inset;
+        }
+
+        .display input {
+            width: 320px;
+            background: transparent;
+            height: 84px;
+            cursor: pointer;
+            padding: 10px;
+            text-align: right;
+            outline: none;
+            font-size: 30px;
+            font-weight: 600;
+            color: #ffffff;
+            border: 5px solid #1c1c1cd6;
+            border-radius: 19px;
+            box-shadow: -5px -6px 15px #000 inset;
+        }
+
+        button {
+            width: 60px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: #ffffff;
+            font-size: 24px;
+            box-shadow: 4px 6px 18px black;
+
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease-in;
+        }
+
+        button:hover {
+            transform: translate3d(2px, 4px, 5px);
+
+        }
+
+        .btn {
+            width: 60px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            outline-offset: 4px;
+            outline: 2px solid #242222;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="expression">
+            <input type="text" readonly value="0">
+        </div>
+        <div class="display">
+            <input type="text" readonly value="0">
+        </div>
+        <div class="btn"><button class="green">AC</button></div>
+        <div class="btn"><button><i class="fa-solid fa-delete-left green"></i></button></div>
+        <div class="btn"><button class="green">+/-</button></div>
+        <div class="btn"><button class="green">÷</button></div>
+        <div class="btn"><button>7</button></div>
+        <div class="btn"><button>8</button></div>
+        <div class="btn"><button>9</button></div>
+        <div class="btn"><button class="green">×</button></div>
+        <div class="btn"><button>4</button></div>
+        <div class="btn"><button>5</button></div>
+        <div class="btn"><button>6</button></div>
+        <div class="btn"><button class="green">-</button></div>
+        <div class="btn"><button>1</button></div>
+        <div class="btn"><button>2</button></div>
+        <div class="btn"><button>3</button></div>
+        <div class="btn"><button class="green">+</button></div>
+        <div class="btn"><button class="green">%</button></div>
+        <div class="btn"><button>0</button></div>
+        <div class="btn"><button>.</button></div>
+        <div class="btn "><button class="orange">=</button></div>
+
+    </div>
+
+</body>
+
+</html>

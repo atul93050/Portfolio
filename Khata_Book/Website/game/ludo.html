@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .green {
+            background-color: rgb(61, 223, 150);
+        }
+
+        .red {
+            background-color: rgb(225, 56, 56);
+        }
+
+        .blue {
+            background-color: rgb(0, 119, 255);
+        }
+
+        .yellow {
+            background-color: rgb(195, 195, 52);
+        }
+
+        .white {
+            background-color: #ffffff;
+        }
+        .colorwhite{
+            color: #ffffff;
+        }
+
+        .outer {
+            display: grid;
+            grid-template-columns: repeat(15, 1fr);
+            grid-template-rows: repeat(15, 1fr);
+            max-width: 800px;
+            max-height: 800px;
+            width: 90vmin;
+            height: 90vmin;
+            border-radius: 15px;
+            outline: 5px solid black;
+            outline-offset: 5px;
+        }
+
+        .greenbox {
+
+            grid-row: 1/7;
+
+            grid-column: 1/7;
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 15px;
+            box-shadow: rgba(77, 42, 5, 0.25) 0px 50px 100px -20px inset, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(77, 42, 5, 0.35) 0px -2px 6px 0px inset;
+        }
+
+        .greencircle,
+        .redcircle,
+        .bluecircle,
+        .yellowcircle {
+            width: 20%;
+            margin: 15%;
+            aspect-ratio: 1;
+            border-radius: 15px;
+            box-shadow: rgba(77, 42, 5, 0.25) 0px 50px 100px -20px inset, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(77, 42, 5, 0.35) 0px -2px 6px 0px inset;
+
+        }
+
+        .yellowpath {
+
+            grid-column: 7/10;
+            grid-row: 1/7;
+            display: grid;
+            gap: 4px;
+            place-items: center;
+
+            grid-template-columns: repeat(3, 1fr);
+
+        }
+
+        .path {
+            width: 80%;
+            box-shadow: rgba(77, 42, 5, 0.25) 0px 50px 100px -20px inset, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(77, 42, 5, 0.35) 0px -2px 6px 0px inset;
+            aspect-ratio: 1;
+            display: grid;
+            place-items: center;
+            outline: 3px solid rgb(233, 231, 231);
+            border-radius: 15%;
+
+
+
+        }
+
+        .yellowbox {
+
+            grid-column: 10/16;
+            grid-row: 1/7;
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 15px;
+            box-shadow: rgba(77, 42, 5, 0.25) 0px 50px 100px -20px inset, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(77, 42, 5, 0.35) 0px -2px 6px 0px inset;
+
+        }
+
+        .greenpath {
+            grid-column: 1/7;
+            grid-row: 7/10;
+            display: grid;
+            place-items: center;
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .homebox {
+            grid-row: 7/10;
+            grid-column: 7/10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .bluepath {
+            grid-column: 10/16;
+            grid-row: 7/10;
+            display: grid;
+            place-items: center;
+            
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .redbox {
+            grid-row: 10/16;
+            grid-column: 1/7;
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 15px;
+            box-shadow: rgba(77, 42, 5, 0.25) 0px 50px 100px -20px inset, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(77, 42, 5, 0.35) 0px -2px 6px 0px inset;
+        }
+
+        .bluebox {
+            grid-column: 10/16;
+            grid-row: 10/16;
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 15px;
+            box-shadow: rgba(77, 42, 5, 0.25) 0px 50px 100px -20px inset, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(77, 42, 5, 0.35) 0px -2px 6px 0px inset;
+        }
+
+        .redpath {
+            grid-column: 7/10;
+            grid-row: 10/16;
+            display: grid;
+            row-gap: 2px;
+            column-gap: 2px;
+            place-items: center;
+           
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .home {
+            height: 0;
+            width: 0;
+            border-top: 9vmin solid rgb(195, 195, 52);
+            border-bottom: 9vmin solid  rgb(225, 56, 56);
+            border-left: 9vmin solid  rgb(61, 223, 150);
+            border-right: 9vmin solid rgb(0, 119, 255);
+        }
+        
+        
+
+    </style>
+</head>
+
+<body>
+
+    <div class="outer">
+        <div class="greenbox ">
+            <div class="greencircle green"></div>
+            <div class="greencircle green"></div>
+            <div class="greencircle green"></div>
+            <div class="greencircle green"></div>
+        </div>
+        <div class="yellowpath">
+            <div class="path white"></div>
+            <div class="path white"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path yellow"></div>
+            <div class="path yellow"><i class="fa-solid fa-star fa-sm colorwhite" ></i></div>
+            <div class="path"><i class="fa-solid fa-star fa-sm" ></i></div>
+            <div class="path yellow"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path yellow"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path yellow"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path yellow"></div>
+            <div class="path"></div>
+        </div>
+        <div class="yellowbox">
+            <div class="yellowcircle yellow"></div>
+            <div class="yellowcircle yellow"></div>
+            <div class="yellowcircle yellow"></div>
+            <div class="yellowcircle yellow"></div>
+        </div>
+        <div class="greenpath">
+            <div class="path"></div>
+            <div class="path green"><i class="fa-solid fa-star fa-sm colorwhite" ></i></div>
+            <div class="path "></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path green"></div>
+            <div class="path green"></div>
+            <div class="path green"></div>
+            <div class="path green"></div>
+            <div class="path green"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"><i class="fa-solid fa-star fa-sm" ></i></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+
+        </div>
+        <div class="homebox">
+            <div class="home">
+
+            </div>
+        </div>
+        <div class="bluepath">
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"><i class="fa-solid fa-star fa-sm" ></i></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path blue"></div>
+            <div class="path blue"></div>
+            <div class="path blue"></div>
+            <div class="path blue"></div>
+            <div class="path blue"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path blue colorwhite"><i class="fa-solid fa-star fa-sm" ></i></div>
+            <div class="path"></div>
+
+        </div>
+        <div class="redbox">
+            <div class="yellowcircle red"></div>
+            <div class="yellowcircle red"></div>
+            <div class="yellowcircle red"></div>
+            <div class="yellowcircle red"></div>
+        </div>
+        <div class="redpath">
+            <div class="path"></div>
+            <div class="path red"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path red"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path red"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path red"></div>
+            <div class="path "><i class="fa-solid fa-star fa-sm" ></i></div>
+            <div class="path red colorwhite"><i class="fa-solid fa-star fa-sm" ></i></div>
+            <div class="path red"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+            <div class="path"></div>
+
+        </div>
+        <div class="bluebox">
+            <div class="yellowcircle blue"></div>
+            <div class="yellowcircle blue"></div>
+            <div class="yellowcircle blue"></div>
+            <div class="yellowcircle blue"></div>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>

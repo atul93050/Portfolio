@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    width: 100vw;
+
+}
+
+h1 {
+    text-align: center;
+    padding: 2em 0;
+    text-decoration: underline;
+
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.outer {
+    border: 20px solid #a74848;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    padding: 0.5em;
+    border-radius: 50%;
+}
+
+.clock {
+    height: 400px;
+    width: 400px;
+
+    aspect-ratio: 1;
+    background: url('clc.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    box-shadow: 0 0 30px inset;
+    border-radius: 50%;
+
+}
+
+.sec {
+    height: 180px;
+    border-radius: 50%;
+    width: 4px;
+    position: absolute;
+
+    left: calc(50% - 2px);
+    top: 20px;
+    background-color: rgb(0, 0, 0);
+    z-index: 5;
+
+
+}
+
+
+
+.min {
+
+
+    position: absolute;
+    top: 80px;
+    z-index: 3;
+    width: 8px;
+    left: calc(50% - 4px);
+    height: 120px;
+    background-color: black;
+    border-radius: 50%;
+
+}
+
+.hour {
+    position: absolute;
+    top: 100px;
+    z-index: 2;
+    left: calc(50% - 5px);
+    width: 10px;
+
+    height: 100px;
+    background-color: #000000;
+    border-radius: 50%;
+}
+
+.dot {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-color: rgb(0, 0, 0);
+    top: calc(50% - 10px);
+    left: calc(50% - 10px);
+    z-index: 111;
+    border-radius: 50%;
+}
+
+@media screen and (max-width:500px) {
+
+    .clock {
+        width: 300px;
+        height: 300px;
+    }
+
+    .min {
+        top: 50px;
+
+        width: 6px;
+        left: calc(50% - 3px);
+        height: 100px;
+
+    }
+
+    .hour {
+
+        top: 80px;
+
+        left: calc(50% - 4px);
+        width: 8px;
+        height: 70px;
+
+    }
+
+    .sec {
+        height: 130px;
+
+
+        top: 20px;
+
+    }
+
+}

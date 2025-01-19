@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(45deg, #0a0a0a, #3a4452);
+    align-items: center;
+
+
+}
+
+.container {
+
+    border-radius: 17px;
+    box-shadow: 0 0 60px #0000009e;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5em;
+}
+
+.container>span {
+    font-size: 8rem;
+    font-weight: 900;
+
+}
+
+.hour {
+    text-align: center;
+    width: 150px;
+    background: linear-gradient(#e1415f, #5b1a1a);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+}
+
+.min {
+    text-align: center;
+    width: 150px;
+    background: linear-gradient(#e1415f, #5b1a1a);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+}
+
+.sec {
+    text-align: center;
+    width: 150px;
+    background: linear-gradient(#e1415f, #5b1a1a);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+}
+
+.colon {
+    background: linear-gradient(45deg, #ffffff, #414141);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+}
+
+.ml {
+    background: linear-gradient(#e1415f, #5b1a1a);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-size: 3rem;
+    margin-top: 21px;
+    width: 100px;
+    text-align: center;
+    margin-left: -31px;
+
+
+}
+
+.day {
+    height: 6rem;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 0 0 0px 41px;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.pm {
+    background: linear-gradient(#e1415f, #5b1a1a);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}

@@ -1,0 +1,247 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+:root {
+  --player1: #00FFFF;
+  --player2: #FF00FF;
+  --bg-color: linear-gradient(45deg, #0F0C29, #302B63);
+  --cell-hover: #39FF14;
+  --button-color: #8A2BE2;
+  --button-text-color: #FFFFFF;
+}
+
+body {
+  background: var(--bg-color);
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  color: white;
+}
+
+
+.container {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+
+h1 {
+  margin-bottom: 20px;
+  color: white;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  transition: all 0.5s ease;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.cell {
+  background-color: #1e1e1e;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: white;
+  cursor: pointer;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cell:hover {
+  background-color: var(--cell-hover);
+  transform: scale(1.05);
+}
+
+
+.cell:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.cell:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .board {
+    gap: 8px;
+  }
+
+  .cell {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .board {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .cell {
+    font-size: 2rem;
+  }
+}
+
+
+.status {
+  margin: 15px 0;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #f9f9f9;
+}
+
+
+button {
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 0.7rem 2.5rem;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--button-color);
+  color: var(--button-text-color);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: #a349a4;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+.input {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  grid-column: 1/4;
+  grid-row: 1/4;
+}
+h3{
+  padding: 1em;
+}
+
+label{
+  padding: 1em;
+}
+
+.input input[type="text"] {
+  border: 2px solid #fff;
+  width: 80%;
+  max-width: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 0px 12px inset rgba(0, 0, 0, 0.5);
+  height: 45px;
+  font-size: 1.1rem;
+  padding: 0 1em;
+  font-weight: 600;
+  color: white;
+  text-transform: capitalize;
+  outline: none;
+  margin-top: 20px;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.input input[type="text"]:focus {
+  border-color: var(--button-color);
+}
+
+.player {
+  font-size: 1.4rem;
+  color: #eaeaea;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.img {
+  height: 120px;
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.img img {
+  width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0px -5px 20px black);
+}
+
+.zoom {
+  box-shadow: 0 0 30px red inset;
+  animation: zoom 1.5s infinite linear;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+@media (max-width: 600px) {
+  body {
+    background: linear-gradient(180deg, #0a0a0a, #232931);
+  }
+
+  .board {
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+  }
+
+  .cell {
+    width: 100px;
+    height: 100px;
+    font-size: 2rem;
+  }
+
+  .img {
+    height: 100px;
+    width: 100px;
+  }
+
+  button {
+    font-size: 1.2rem;
+  }
+
+  .container h1 {
+    display: none;
+  }
+}
