@@ -62,8 +62,26 @@ const navMenu = document.getElementById('navMenu');
 
 hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
-    document.getElementById('bar1').style.transform = "rotate(90deg)";
+
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+
+    if (navMenu.classList.contains('active')) {
+        bar1.style.transform = "rotate(45deg)";
+        bar1.style.transformOrigin = "top left";
+        bar2.style.opacity = "0";
+        bar3.style.transform = "rotate(-45deg)";
+        bar3.style.transformOrigin = "bottom left";
+    } else {
+        bar1.style.transform = "rotate(0)";
+        bar1.style.transformOrigin = "initial";
+        bar2.style.opacity = "1";
+        bar3.style.transform = "rotate(0)";
+        bar3.style.transformOrigin = "initial";
+    }
 });
+
 
 // Contact modal Start
 
@@ -88,136 +106,141 @@ window.addEventListener("click", (event) => {
         modal.style.display = "none";
     }
 });
-// Validation contact model
-const form = document.getElementById("ContactFormModal");
-const fullname = document.getElementById("name");
-const email = document.getElementById("Email");
-const phone = document.getElementById("Phone");
-const message = document.getElementById("Message");
-const submit = document.getElementById("submit");
+document.addEventListener("DOMContentLoaded", function () {
+    // First Form (Modal)
+    const fullname = document.getElementById("name");
+    const email = document.getElementById("Email");
+    const phone = document.getElementById("Phone");
+    const message = document.getElementById("Message");
+    const submit = document.getElementById("submit");
 
-// Validation Contact Form
+    // Second Form (Contact Form)
+    const contactName = document.getElementById("ContactName");
+    const contactEmail = document.getElementById("ContactEmail");
+    const contactMessage = document.getElementById("ContactMessage");
+    const contactSubmit = document.getElementById("ContactSubmit");
 
-const ContactForm = document.getElementById("ContactForm");
-const ContactName = document.getElementById("ContactName");
-const ContactEmail = document.getElementById("ContactEmail");
-const ContactMessage = document.getElementById("ContactMessage");
-const ContactSubmit = document.getElementById("ContactSubmit");
-
-
-// Validation functions
-function validateName(name) {
-    const nameError = document.getElementById("name-error");
-    if (name.value.trim() === "") {
-        nameError.textContent = "Name cannot be empty.";
-        nameError.style.color = "red";
-        return false;
-    } else if (name.value.length < 2) {
-        nameError.textContent = "Name must be at least 2 characters.";
-        nameError.style.color = "red";
-        return false;
-    } else {
-        nameError.textContent = "";
-        return true;
+    // Validation functions
+    function validateName(input, errorId) {
+        const nameError = document.getElementById(errorId);
+        if (input.value.trim() === "") {
+            nameError.textContent = "Name cannot be empty.";
+            nameError.style.color = "red";
+            return false;
+        } else if (input.value.length < 2) {
+            nameError.textContent = "Name must be at least 2 characters.";
+            nameError.style.color = "red";
+            return false;
+        } else {
+            nameError.textContent = "";
+            return true;
+        }
     }
-}
 
-function validateEmail(email) {
-    const emailError = document.getElementById("email-error");
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (email.value.trim() === "") {
-        emailError.textContent = "Email cannot be empty.";
-        emailError.style.color = "red";
-        return false;
-    } else if (!emailPattern.test(email.value)) {
-        emailError.textContent = "Invalid email format.";
-        emailError.style.color = "red";
-        return false;
-    } else {
-        emailError.textContent = "";
-        return true;
+    function validateEmail(input, errorId) {
+        const emailError = document.getElementById(errorId);
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (input.value.trim() === "") {
+            emailError.textContent = "Email cannot be empty.";
+            emailError.style.color = "red";
+            return false;
+        } else if (!emailPattern.test(input.value)) {
+            emailError.textContent = "Invalid email format.";
+            emailError.style.color = "red";
+            return false;
+        } else {
+            emailError.textContent = "";
+            return true;
+        }
     }
-}
 
-function validatePhone(phone) {
-    const phoneError = document.getElementById("phone-error");
-    const phonePattern = /^[0-9]{10}$/;
-    if (phone.value.trim() === "") {
-        phoneError.textContent = "Phone number cannot be empty.";
-        phoneError.style.color = "red";
-        return false;
-    } else if (!phonePattern.test(phone.value)) {
-        phoneError.textContent = "Phone number must be 10 digits.";
-        phoneError.style.color = "red";
-        return false;
-    } else {
-        phoneError.textContent = "";
-        return true;
+    function validatePhone(input, errorId) {
+        const phoneError = document.getElementById(errorId);
+        const phonePattern = /^[0-9]{10}$/;
+        if (input.value.trim() === "") {
+            phoneError.textContent = "Phone number cannot be empty.";
+            phoneError.style.color = "red";
+            return false;
+        } else if (!phonePattern.test(input.value)) {
+            phoneError.textContent = "Phone number must be 10 digits.";
+            phoneError.style.color = "red";
+            return false;
+        } else {
+            phoneError.textContent = "";
+            return true;
+        }
     }
-}
 
-function validateMessage(message) {
-    const messageError = document.getElementById("message-error");
-    if (message.value.trim() === "") {
-        messageError.textContent = "Message cannot be empty.";
-        messageError.style.color = "red";
-        return false;
-    } else if (message.value.length < 10) {
-        messageError.textContent = "Message must be at least 10 characters.";
-        messageError.style.color = "red";
-        return false;
-    } else {
-        messageError.textContent = "";
-        return true;
+    function validateMessage(input, errorId) {
+        const messageError = document.getElementById(errorId);
+        if (input.value.trim() === "") {
+            messageError.textContent = "Message cannot be empty.";
+            messageError.style.color = "red";
+            return false;
+        } else if (input.value.length < 10) {
+            messageError.textContent = "Message must be at least 10 characters.";
+            messageError.style.color = "red";
+            return false;
+        } else {
+            messageError.textContent = "";
+            return true;
+        }
     }
-}
 
-// Main Validation Function
-function validateForm(event) {
-    const isNameValid = validateName();
-    const isEmailValid = validateEmail();
-    const isPhoneValid = validatePhone();
-    const isMessageValid = validateMessage();
-
-    const isValid = isNameValid && isEmailValid && isPhoneValid && isMessageValid;
-    if (!isValid) {
-        submit.disabled = true;
-        submit.style.backgroundColor = "red";
-        submit.style.cursor = "not-allowed";
-        if (event) event.preventDefault();
-    } else {
-        submit.disabled = false;
-        submit.style.backgroundColor = "";
-        submit.style.cursor = "pointer";
+    // Function to check form validity and enable/disable submit button
+    function checkFormValidity(formType) {
+        if (formType === "modal") {
+            if (validateName(fullname, "name-error") && validateEmail(email, "email-error") && validatePhone(phone, "phone-error") && validateMessage(message, "message-error")) {
+                submit.disabled = false;
+                submit.style.backgroundColor = "";
+                submit.style.cursor = "pointer";
+            } else {
+                submit.disabled = true;
+                submit.style.backgroundColor = "red";
+                submit.style.cursor = "not-allowed";
+            }
+        } else if (formType === "contact") {
+            if (validateName(contactName, "contact-name-error") && validateEmail(contactEmail, "contact-email-error") && validateMessage(contactMessage, "contact-message-error")) {
+                contactSubmit.disabled = false;
+                contactSubmit.style.backgroundColor = "";
+                contactSubmit.style.cursor = "pointer";
+            } else {
+                contactSubmit.disabled = true;
+                contactSubmit.style.backgroundColor = "red";
+                contactSubmit.style.cursor = "not-allowed";
+            }
+        }
     }
-}
 
+    // Add Blur Event Listeners (Validation when user leaves the field)
+    fullname?.addEventListener("blur", () => validateName(fullname, "name-error"));
+    email?.addEventListener("blur", () => validateEmail(email, "email-error"));
+    phone?.addEventListener("blur", () => validatePhone(phone, "phone-error"));
+    message?.addEventListener("blur", () => validateMessage(message, "message-error"));
 
-// Add keyup event listeners for real-time validation
+    contactName?.addEventListener("blur", () => validateName(contactName, "contact-name-error"));
+    contactEmail?.addEventListener("blur", () => validateEmail(contactEmail, "contact-email-error"));
+    contactMessage?.addEventListener("blur", () => validateMessage(contactMessage, "contact-message-error"));
 
-fullname.addEventListener("keyup", () => {
-    validateName();
-    validateForm();
+    // Add Focusout Event Listener to check form validity
+    fullname?.addEventListener("focusout", () => checkFormValidity("modal"));
+    email?.addEventListener("focusout", () => checkFormValidity("modal"));
+    phone?.addEventListener("focusout", () => checkFormValidity("modal"));
+    message?.addEventListener("focusout", () => checkFormValidity("modal"));
 
+    contactName?.addEventListener("focusout", () => checkFormValidity("contact"));
+    contactEmail?.addEventListener("focusout", () => checkFormValidity("contact"));
+    contactMessage?.addEventListener("focusout", () => checkFormValidity("contact"));
+
+    // Prevent Form Submission if Validation Fails
+    document.getElementById("ContactForm")?.addEventListener("submit", function (event) {
+        if (!validateName(contactName, "contact-name-error") || !validateEmail(contactEmail, "contact-email-error") || !validateMessage(contactMessage, "contact-message-error")) {
+            event.preventDefault();
+        }
+    });
 });
-email.addEventListener("keyup", () => {
-    validateEmail();
-    validateForm();
 
-});
-phone.addEventListener("keyup", () => {
-    validatePhone();
-    validateForm();
 
-});
-message.addEventListener("keyup", () => {
-    validateMessage();
-    validateForm();
-
-});
-
-// Add event listener to the submit button
-submit.addEventListener("click", validateForm);
 
 
 

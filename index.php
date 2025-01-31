@@ -1,3 +1,21 @@
+<?php
+include("db/session.php");
+SessionStart();
+include("db/connection.php");
+$conn = connection();
+if ($conn) {
+  $name = $_POST["name"] ?? null;
+  $email = $_POST["Email"] ?? null;
+  $phone = $_POST["Phone"] ?? null;
+  $address = $_POST["Message"] ?? null;
+  
+
+
+} else {
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,11 +23,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atul Verma - Web Developer Portfolio</title>
-  <meta name="description" content="Welcome to my portfolio! I am Atul Verma, a skilled web developer specializing in creating modern and responsive websites. Explore my projects and contact me for collaboration.">
+  <meta name="description"
+    content="Welcome to my portfolio! I am Atul Verma, a skilled web developer specializing in creating modern and responsive websites. Explore my projects and contact me for collaboration.">
   <meta name="author" content="Atul Verma">
-  <meta name="keywords" content="web developer, portfolio, Laravel developer, PHP developer, projects, web design, freelance">
+  <meta name="keywords"
+    content="web developer, portfolio, Laravel developer, PHP developer, projects, web design, freelance">
   <meta property="og:title" content="Atul Verma - Web Developer Portfolio">
-  <meta property="og:description" content="Check out my portfolio showcasing modern, responsive websites and innovative projects.">
+  <meta property="og:description"
+    content="Check out my portfolio showcasing modern, responsive websites and innovative projects.">
   <!-- <meta property="og:image" content="https://yourwebsite.com/path-to-image.jpg"> -->
   <meta property="og:url" content="https://atul-verma.kryotek.in">
   <meta property="og:type" content="website">
@@ -89,19 +110,30 @@
 
       </div>
       <div class="hamburger" id="hamburger">
-        <div class="bar" id="1"></div>
-        <div class="bar" id="2"></div>
-        <div class="bar" id="3"></div>
+        <div class="bar anchordefault" id="bar1"></div>
+        <div class="bar anchordefault" id="bar2"></div>
+        <div class="bar anchordefault" id="bar3"></div>
       </div>
+
     </nav>
     <section class="banner">
       <div class="container">
-        <span class="iam">I'm a</span>
-        <span class="full">PHP </span>
-        <span class="full">WEB</span>
-        <span class="full">DEVELOPER</span>
-        <span class="banner-button"><a class="fill" href="">Projects</a></span>
+
+        <span class="iam">Hi, I'm</span>
+        <h1><span class="highlight-name">Atul Verma</span></h1>
+        <h2 class="rotating-text">
+          <span>PHP Developer</span>
+          <span>Web Designer</span>
+          <span>Software Engineer</span>
+        </h2>
+        <p>Building scalable and efficient web applications with modern technologies.</p>
+        <div class="hero-buttons">
+          <a class="fill" href="#projects">View Projects</a>
+          <a class="outline" href="#contact">Hire Me</a>
+        </div>
       </div>
+
+
     </section>
 
   </header>
@@ -138,7 +170,8 @@
               <a href="#" class="social-icon github" aria-label="Github">
                 <i class="fab fa-github"></i>
               </a>
-              <a href="https://wa.me/919305089318?text=Hi,%20I%20would%20like%20to%20know%20more%20about%20your%20services!" class="social-icon whatsapp" aria-label="Whatsapp">
+              <a href="https://wa.me/919305089318?text=Hi,%20I%20would%20like%20to%20know%20more%20about%20your%20services!"
+                class="social-icon whatsapp" aria-label="Whatsapp">
                 <i class="fab fa-whatsapp"></i>
               </a>
               <a href="#" class="social-icon twitter" aria-label="Twitter">
@@ -202,10 +235,12 @@
                   <li>Expense Categories</li>
                 </ul>
                 <p class="project-link">
-                  Live Demo: <a href="Khata_Book/index.php" target="_blank" rel="noopener noreferrer">Visit Project &#8599;</a>
+                  Live Demo: <a href="Khata_Book/index.php" target="_blank" rel="noopener noreferrer">Visit Project
+                    &#8599;</a>
                 </p>
                 <p class="project-link">
-                  Source Code: <a href="https://abcd-Example.com" target="_blank" rel="noopener noreferrer">View Source Code &#8599;</a>
+                  Source Code: <a href="https://abcd-Example.com" target="_blank" rel="noopener noreferrer">View Source
+                    Code &#8599;</a>
                 </p>
               </div>
             </div>
@@ -223,7 +258,9 @@
                   <li>Data Persistence through File Handling</li>
                 </ul>
                 <p class="project-link">
-                  Source Code: <a href="https://github.com/atul93050/C-Projects/blob/35d6dae0e52f1db03de4ebb30d4e2083f027e226/BankManagementSystem.c" target="_blank" rel="noopener noreferrer">View Source Code &#8599;</a>
+                  Source Code: <a
+                    href="https://github.com/atul93050/C-Projects/blob/35d6dae0e52f1db03de4ebb30d4e2083f027e226/BankManagementSystem.c"
+                    target="_blank" rel="noopener noreferrer">View Source Code &#8599;</a>
                 </p>
               </div>
 
@@ -245,7 +282,8 @@
                   <li>Data Persistence through File Handling</li>
                 </ul>
                 <p class="project-link">
-                  Source Code: <a href="https://github.com/atul93050/C-Projects/blob/9b91db74fb0615401949b004b0366bee08119d69/FoodOrderManagementSystem.c"
+                  Source Code: <a
+                    href="https://github.com/atul93050/C-Projects/blob/9b91db74fb0615401949b004b0366bee08119d69/FoodOrderManagementSystem.c"
                     target="_blank" rel="noopener noreferrer">View Source Code &#8599;</a>
                 </p>
               </div>
@@ -267,12 +305,16 @@
           <h3>Education</h3>
 
           <div class="timeline-container" id="Education-List">
+
             <!-- content will be Loaded Here through js-->
+
           </div>
+
         </div>
         <div class="experience-container">
           <h3>Experience</h3>
           <div class="timeline-container" id="Experience-List">
+
             <!-- content will be Loaded Here through js -->
 
           </div>
@@ -280,17 +322,6 @@
       </div>
     </section>
     <!-- Education Section End -->
-
-
-
-
-
-
-
-    <section>
-
-      <div class="elfsight-app-c89729bd-d9a4-4ef8-b042-1d2381f6e4e2" data-elfsight-app-lazy></div>
-    </section>
 
   </main>
   <!-- Contact Section Start-->
@@ -322,10 +353,17 @@
         <h3>Contact Us</h3>
         <form action="submit_form.php" method="POST" id="ContactForm">
           <input type="text" id="ContactName" name="name" placeholder="Your Name" required>
+          <span id="contact-name-error" class="error-message"></span>
+
           <input type="email" id="ContactEmail" name="email" placeholder="Your Email" required>
+          <span id="contact-email-error" class="error-message"></span>
+
           <textarea name="message" id="ContactMessage" placeholder="Your Message" rows="5" required></textarea>
+          <span id="contact-message-error" class="error-message"></span>
+
           <button type="submit" id="ContactSubmit" class="submit-button">Send Message</button>
         </form>
+
       </div>
     </div>
   </section>
@@ -338,11 +376,15 @@
         <span>Stay connected with me on social networks:</span>
       </div>
       <div class="social-media-right">
-        <a href="https://www.facebook.com/atul.verma.1" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.facebook.com/atul.verma.1" class="social-icon" target="_blank"><i
+            class="fab fa-facebook-f"></i></a>
         <a href="https://twitter.com/atul_verma" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://plus.google.com/atul.verma" class="social-icon" target="_blank"><i class="fab fa-google"></i></a>
-        <a href="https://www.instagram.com/atul_verma" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/atul-verma930" class="social-icon" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://plus.google.com/atul.verma" class="social-icon" target="_blank"><i
+            class="fab fa-google"></i></a>
+        <a href="https://www.instagram.com/atul_verma" class="social-icon" target="_blank"><i
+            class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/atul-verma930" class="social-icon" target="_blank"><i
+            class="fab fa-linkedin"></i></a>
         <a href="https://github.com/atul93050" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
       </div>
     </section>
@@ -354,7 +396,9 @@
           <h6 class="footer-title">About Us</h6>
           <hr class="footer-divider">
           <p>
-            We are a tech-focused company aiming to provide software solutions that make your business run smoothly. Founded by Atul Verma, we specialize in web development, PHP programming, and providing IT consulting services.
+            We are a tech-focused company aiming to provide software solutions that make your business run smoothly.
+            Founded by Atul Verma, we specialize in web development, PHP programming, and providing IT consulting
+            services.
           </p>
         </div>
 
@@ -424,8 +468,6 @@
   <!-- Main Js -->
   <script src="js/script.js"></script>
 
-  <!-- visitor counter js library -->
-  <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </body>
 
 </html>
