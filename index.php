@@ -1,18 +1,21 @@
 <?php
-include("db/session.php");
-SessionStart();
-include("db/connection.php");
-$conn = connection();
-if ($conn) {
-  $name = $_POST["name"] ?? null;
-  $email = $_POST["Email"] ?? null;
-  $phone = $_POST["Phone"] ?? null;
-  $address = $_POST["Message"] ?? null;
-  
+// include("db/session.php");
+// SessionStart();
+// include("db/connection.php");
+// $conn = connection();
+// if ($conn) {
+//   $name = $_POST["name"] ?? null;
+//   $email = $_POST["Email"] ?? null;
+//   $phone = $_POST["Phone"] ?? null;
+//   $address = $_POST["Message"] ?? null;
 
 
-} else {
-}
+
+// } else {
+// }
+
+$end_date = new DateTime();
+
 
 
 ?>
@@ -55,12 +58,12 @@ if ($conn) {
       <div class="nav-menu" id="navMenu">
         <a href="index.php" class="nav-list  anchordefault">Home</a>
         <a href="#About-me" class="nav-list  anchordefault">About</a>
-        <a href="#Education" class="nav-list  anchordefault">Education</a>
+        <a href="#Education-Experience" class="nav-list  anchordefault">Education</a>
         <a href="#projects" class="nav-list anchordefault">Projects</a>
-        <a href="#experience" class="nav-list anchordefault">Experience</a>
+        <a href="#Education-Experience" class="nav-list anchordefault">Experience</a>
 
         <div class="contact-button outline" id="Contact-Btn">
-          <a><i class="fa-solid fa-feather-pointed"></i> Contact</a>
+          <a href=""><i class="fa-solid fa-feather-pointed"></i> Contact</a>
 
         </div>
 
@@ -105,8 +108,6 @@ if ($conn) {
           </div>
         </div>
         <!-- Contact Modal End -->
-
-
 
       </div>
       <div class="hamburger" id="hamburger">
@@ -186,8 +187,9 @@ if ($conn) {
           </div>
         </div>
         <!-- Skills Section Start-->
-        <div class="skills-container" id="skill-list">
+        <div class="skills-container">
           <!-- Skills will be loaded here -->
+          <?php require "includes/skilllist.php" ?>
         </div>
         <!-- Skills Section End-->
       </div>
@@ -197,7 +199,7 @@ if ($conn) {
 
 
     <!-- apps and games section start -->
-    <section>
+    <section id="Apps-Games">
       <h1 class="heading">My Apps and Games</h1>
       <div id="project-cards">
         <!-- App and Games will be loaded here -->
@@ -210,7 +212,7 @@ if ($conn) {
     <!-- Project section Start -->
 
 
-    <section class="section">
+    <section class="section" id="projects">
       <h1 class="heading">My Projects</h1>
       <div class="container-project">
         <div class="filters-group">
@@ -225,7 +227,7 @@ if ($conn) {
         <div class="row" id="grid">
           <div class="picture-item" data-category="php">
             <div class="card">
-              <img src="image/php.png" alt="Angular">
+              <img src="image/EMS.jpg" alt="Expense Tracker">
               <div class="card-body">
                 <h5>Expense Tracker Management</h5>
                 <p><strong>Description:</strong> A web application to track daily expenses with user authentication.</p>
@@ -247,7 +249,7 @@ if ($conn) {
           </div>
           <div class="picture-item" data-category="c">
             <div class="card">
-              <img src="image/php.png" alt="Angular">
+              <img src="image/BMS.jpg" alt="BMS">
               <div class="card-body">
                 <h5>Bank Management System</h5>
                 <p><strong>Description:</strong> A console-based banking management system developed in C.</p>
@@ -268,7 +270,7 @@ if ($conn) {
           </div>
           <div class="picture-item" data-category="c">
             <div class="card">
-              <img src="image/php.png" alt="Food Order Management">
+              <img src="image/FMS.jpg" alt="Food Order Management">
               <div class="card-body">
                 <h5>Food Order Management System</h5>
                 <p>

@@ -4,6 +4,22 @@ function windowScroll() {
 }
 window.addEventListener("scroll", windowScroll);
 
+
+
+document.querySelectorAll('.anchordefault').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetID = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetID);
+        window.scrollTo({
+            top: targetElement.offsetTop - 70, 
+            behavior: 'smooth'
+        });
+    });
+});
+
+
+
 // animation 
 
 // back to top 
@@ -390,77 +406,6 @@ Experience.forEach(({ color, title, company, duration, description, skills }) =>
                 </ul>
             </div>
         </div>
-    `;
-});
-
-//skill section
-
-
-const skills = [
-    {
-        image: "image/c.png",
-        name: "C Programming",
-        Ex: "1 year Experience"
-    },
-    {
-        image: "image/html.png",
-        name: "HTML",
-        Ex: "1 Year Experience"
-    },
-    {
-        image: "image/css.png",
-        name: "CSS",
-        Ex: "1 Year Experience"
-    },
-    {
-        image: "image/js.png",
-        name: "JavaScript",
-        Ex: "1 Year Experience"
-    },
-    {
-        image: "image/bootstrap.png",
-        name: "Bootstrap",
-        Ex: "1 Year Experience"
-    }
-    ,
-    {
-        image: "image/php.png",
-        name: "PHP",
-        Ex: "6 Month Experience"
-    },
-    {
-        image: "image/sql.png",
-        name: "SQL",
-        Ex: "8 Month Experience"
-    },
-    {
-        image: "image/django.png",
-        name: "django",
-        Ex: "1 Month Experience"
-    },
-    {
-        image: "image/wordpress.png",
-        name: "Wordpress",
-        Ex: "1 Month Experience"
-    },
-    {
-        image: "image/laravel.png",
-        name: "Laravel",
-        Ex: "1 Month Experience"
-    },
-];
-
-const skillList = document.getElementById("skill-list");
-
-skills.forEach(({ image, name, Ex }) => {
-    skillList.innerHTML += `
-        <div class="skill-card">
-                  <img src="${image}" alt="${image}" class="skill-icon">
-                  <div>
-                      <h6 class="skill-name">${name}</h6>
-                      <p class="skill-experience">${Ex}</p>
-                  </div>
-              </div>
     `;
 });
 
