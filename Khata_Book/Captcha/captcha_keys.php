@@ -1,6 +1,6 @@
 <?php
 //public
-$SITE_KEY = "6LewpMkqAAAAAGZJneCdNplTpE9tOCETTgZHiP9x";
+$SITE_KEY = "6Le9V8wqAAAAAHLZUawl7PKQ2Qs1jrq2QnjbAcFE";
 
 //private
-$SECRET_KEY = "6LewpMkqAAAAAEOyoCehwzB8ki0vOOQEOuQsfD_f";
+$SECRET_KEY = "6Le9V8wqAAAAAAUEgdtg9cSizg7oEDsP6LxYiP-n";

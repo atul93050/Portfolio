@@ -78,154 +78,185 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="title" content="Secure Login | Khata Book Digital Ledger Management">
+  <meta name="description"
+    content="Securely access your Khata Book digital ledger account. Manage your business transactions and financial records with our optimized login interface.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="author" content="Atul-Verma">
 
   <title>Khata Book - Login</title>
-  <link rel="icon" type="image/x-icon" href="icon/Easy.png">
+  <link rel="icon" type="image/x-icon" href="icon/Khata.png">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      height: 100vh;
-      width: 100vw;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+ <style>
+    :root {
+            --primary-color: #4f46e5;
+            --hover-color: #3b3f9a;
+            --background-gradient: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+        }
 
-    .login-form {
-      width: 340px;
-      margin: 50px auto;
-      font-size: 15px;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-gradient);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .login-form form {
-      margin-bottom: 15px;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
-      padding: 30px;
-      border: 1px solid #ddd;
-    }
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            padding: 2.5rem;
+            transition: transform 0.3s ease;
+        }
 
-    .login-form h2 {
-      color: #636363;
-      margin: 0 0 15px;
-      position: relative;
-      text-align: center;
-      font-size: 14px;
-    }
+        .login-card:hover {
+            transform: translateY(-5px);
+        }
 
-    /* 
-    .login-form h2:before,
-    .login-form h2:after {
-      content: "";
-      height: 2px;
-      width: 22%;
-      background: #d4d4d4;
-      position: absolute;
-      top: 50%;
-      z-index: 2;
-    }
+        .brand-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: block;
+        }
 
-    .login-form h2:before {
-      left: 0;
-    }
+        .form-control {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            transition: all 0.3s ease;
+        }
 
-    .login-form h2:after {
-      right: 0;
-    } */
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
 
-    .login-form .hint-text {
-      color: #999;
-      margin-bottom: 30px;
-      font-size: 1.5rem;
-      text-align: center;
-    }
+        .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0a0a0;
+        }
 
-    .login-form a:hover {
-      text-decoration: none;
-    }
+        .btn-primary {
+            background: var(--primary-color);
+            border: none;
+            padding: 0.75rem;
+            font-weight: 500;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
 
-    .form-control,
-    .btn {
-      min-height: 38px;
-      border-radius: 2px;
-    }
+        .btn-primary:hover {
+            background: var(--hover-color);
+            transform: translateY(-2px);
+        }
 
-    .btn {
-      font-size: 15px;
-      font-weight: bold;
-    }
+        .alert {
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+        }
 
-    /* .btn-succ {
-      color: #000000;
-      background-color: #ffffff;
-      border-color: #000000;
-    }
+        .g-recaptcha {
+            margin: 1rem 0;
+        }
 
-    .btn-succ:hover {
-      color: #ffffff;
-      background-color: #000000;
-      border-color: #000000;
-    } */
-  </style>
+        .footer-links {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #666;
+        }
+
+        .footer-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--hover-color);
+            text-decoration: underline;
+        }
+ </style>
 </head>
 
 <body>
-  <div class="login-form">
-    <form action="login.php" method="POST" autocomplete="off">
-      <div class="form-group text-center">
-        <img class="text-center img img-fluid avatar" src="icon/Khata.png">
-      </div>
-      <p class="hint-text">Login Panel</p>
-      <?php if ($message): ?>
-        <div class="form-group text-center">
-          <h2 class="alert alert-info text-danger"><?= htmlspecialchars($message) ?></h2>
-        </div>
-      <?php endif; ?>
-      <div class="form-group">
-        <input type="text" name="user" class="form-control" placeholder="Email or Phone" required="required">
-        <small id="emailHelp" class="form-text text-danger"><?= $username_error ?></small>
-      </div>
-      <div class="form-group">
-        <input type="password" name="password" class="form-control" placeholder="Password" required="required">
-      </div>
-      <div class="form-group">
-        <div class="g-recaptcha " data-sitekey="<?php echo $SITE_KEY ?>"></div>
+<div class="login-card">
+        <img src="icon/Khata.png" alt="Khata Book Logo" class="brand-logo">
+        <h3 class="text-center mb-4">Welcome Back! 👋</h3>
 
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-outline-dark btn-block" style="border-radius:0%;" name="submit">Login</button>
-      </div>
-      <div class="clearfix">
-        <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-      </div>
-      <div class="clearfix">
-        <p>Don't have an account? <a href="register.php" class="text-danger">Register Here</a></p>
-      </div>
-    </form>
-  </div>
+        <?php if ($message): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?= htmlspecialchars($message) ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php endif; ?>
+
+        <form action="login.php" method="POST" autocomplete="off">
+            <div class="form-group">
+                <div class="position-relative">
+                    <input type="text" name="user" class="form-control" placeholder="Email or Phone" required>
+                    <i class ="fas fa-user input-icon"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="position-relative">
+                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="<?= $SITE_KEY ?>"></div>
+            </div>
+
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="rememberMe">
+                    <label class="custom-control-label" for="rememberMe">Remember me</label>
+                </div>
+                <a href="#" class="text-muted small">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" name="submit">
+                Sign In <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </form>
+
+        <div class="footer-links mt-4">
+            <p class="mb-2">Don't have an account? <a href="register.php">Create Account</a></p>
+            <p class="mb-0">© 2023 Khata Book. All rights reserved.</p>
+        </div>
+    </div>
 </body>
 <!-- Bootstrap core JavaScript -->
 <script src="js/jquery.slim.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <!-- Menu Toggle Script -->
 <script>
-  $("#menu-toggle").click(function(e) {
+  $("#menu-toggle").click(function (e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
   });
 </script>
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-  async defer>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
 </script>
 <script type="text/javascript">
-  var onloadCallback = function() {
+  var onloadCallback = function () {
     grecaptcha.render('html_element', {
       '<?php echo $SECRET ?>': '<?php echo $SITE_KEY ?>'
     });

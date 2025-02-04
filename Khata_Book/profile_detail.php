@@ -41,7 +41,7 @@ $profilepicture = fetch_userphoto($username) ?? 'uploads/profile_default.png';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="icon" type="image/x-icon" href="icon/Easy.png">
+    <link rel="icon" type="image/x-icon" href="icon/Khata.png">
   <title>Khata Book - Profile</title>
 
     <!-- Bootstrap core CSS -->

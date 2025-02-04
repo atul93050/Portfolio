@@ -1,9 +1,9 @@
-<?php 
+<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if(isset($_POST['upload'])){
+if (isset($_POST['upload'])) {
     $uploadDir = "uploads/"; //upload folder ka path
 
     // file ka information jo server se aaya hai
@@ -18,37 +18,34 @@ if(isset($_POST['upload'])){
     $allowedTypes = array('image/jpeg', 'image/png', 'image/jpg');
     $allowedExtensions = array('jpg', 'jpeg', 'png');
     $fileExtension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-    
     if (!in_array($fileType, $allowedTypes) || !in_array($fileExtension, $allowedExtensions)) {
         echo "Invalid file type or extension";
     }
-    
-    if($fileError === 0){
 
-        $file_path = "../uploads/".basename($file); // file path
+    if ($fileError === 0) {
+        $file_path = "uploads/" . basename($file); // file path
 
-        if(move_uploaded_file($fileTmpName,$file_path)){
+        if (move_uploaded_file($fileTmpName, $file_path)) {
             include_once "connection.php";
             $connection = connection();
             $username = $_SESSION['user_id'];
             echo $username;
-            $query = mysqli_prepare($connection,"insert into user_photos(UserID,PhotoName,Path,UploadTime) values (?,?,?,NOW())");
-            mysqli_stmt_bind_param($query,"iss",$username,$file,$file_path);
+            $query = mysqli_prepare($connection, "update user_photos set PhotoName = ?, Path = ?, UploadTime = NOW() where UserID = ?");
+            mysqli_stmt_bind_param($query, "ssi", $file, $file_path, $username);
             mysqli_stmt_execute($query);
-            $file_message = "File uploaded successfully";
-            header("Location: ../profile.php");
-            
-        }
+            if (mysqli_affected_rows($connection) > 0) {
+                $file_message = "File uploaded successfully";
+                header("Location: ../profile.php");
+            }
 
-        else{
+        } else {
             $file_message = "Failed to upload file";
         }
-
-    }
-
-    else{
+    } else {
         $file_message = "Error uploading file";
     }
+
+
 
 }
 ?>

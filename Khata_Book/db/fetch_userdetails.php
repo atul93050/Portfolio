@@ -124,7 +124,7 @@ function fetch_transaction($trans_id, $id)
 
 function fetch_expense_amount($id,$type)
 {
-    $conn = connection();
+    $conn = connection();   
     try {
         mysqli_begin_transaction($conn);
         $query = mysqli_prepare($conn, "SELECT DISTINCT SUM(amount) FROM user_credits where UserId = ? and transaction_type = ?");

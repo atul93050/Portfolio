@@ -64,12 +64,19 @@ function registeration($fname, $lname, $email, $phone, $password)
             mysqli_stmt_execute($query4);
 
 
-             // Insert into user balance
-        $query5 = mysqli_prepare($connection, "INSERT INTO user_balance (UserID) VALUES (?)");
-        mysqli_stmt_bind_param($query5, "i", $userID);
-        if (!mysqli_stmt_execute($query5)) {
-            throw new Exception('Error inserting user balance: ' . mysqli_stmt_error($query5));
-        }
+            // Insert into user balance
+            $query5 = mysqli_prepare($connection, "INSERT INTO user_balance (UserID) VALUES (?)");
+            mysqli_stmt_bind_param($query5, "i", $userID);
+            mysqli_stmt_execute($query5);
+            if (!mysqli_stmt_execute($query5)) {
+                throw new Exception('Error inserting user balance: ' . mysqli_stmt_error($query5));
+            }
+            $photoName = "prof.png";
+            $photoPath = "uploads/profile_default.png";
+            $query6 = mysqli_prepare($connection, 'insert into user_photos(UserID,PhotoName,Path,UploadTime) values (?,?,?,NOW())');
+            mysqli_stmt_bind_param($query6, "iss", $userID, $photoName, $photoPath);
+            mysqli_stmt_execute($query6);
+
 
             // Check if all queries executed successfully:
             if (
@@ -77,7 +84,9 @@ function registeration($fname, $lname, $email, $phone, $password)
                 mysqli_stmt_affected_rows($query2) > 0 &&
                 mysqli_stmt_affected_rows($query3) > 0 &&
                 mysqli_stmt_affected_rows($query4) > 0 &&
-                mysqli_stmt_affected_rows($query5) > 0
+                mysqli_stmt_affected_rows($query5) > 0 &&
+                mysqli_stmt_affected_rows($query6) > 0
+
             ) {
                 // If everything is successful:
                 mysqli_commit($connection);
@@ -87,6 +96,7 @@ function registeration($fname, $lname, $email, $phone, $password)
                 mysqli_stmt_close($query3);
                 mysqli_stmt_close($query4);
                 mysqli_stmt_close($query5);
+                mysqli_stmt_close($query6);
                 mysqli_close($connection);
                 return "User registered successfully!";
 
@@ -94,22 +104,37 @@ function registeration($fname, $lname, $email, $phone, $password)
             } else {
                 mysqli_rollback($connection);
                 // Close the prepared statements if any query failed
-                if (isset($query1)) mysqli_stmt_close($query1);
-                if (isset($query2)) mysqli_stmt_close($query2);
-                if (isset($query3)) mysqli_stmt_close($query3);
-                if (isset($query4)) mysqli_stmt_close($query4);
-                if (isset($query5)) mysqli_stmt_close($query5);
+                if (isset($query1))
+                    mysqli_stmt_close($query1);
+                if (isset($query2))
+                    mysqli_stmt_close($query2);
+                if (isset($query3))
+                    mysqli_stmt_close($query3);
+                if (isset($query4))
+                    mysqli_stmt_close($query4);
+                if (isset($query5))
+                    mysqli_stmt_close($query5);
+                if (isset($query6))
+                    mysqli_stmt_close($query6);
                 mysqli_close($connection);
                 return "Error in registration!";
             }
         } catch (Exception $e) {
             mysqli_rollback($connection);
             // Close the prepared statements in case of error
-            if (isset($query1)) mysqli_stmt_close($query1);
-            if (isset($query2)) mysqli_stmt_close($query2);
-            if (isset($query3)) mysqli_stmt_close($query3);
-            if (isset($query4)) mysqli_stmt_close($query4);
-            if(isset($query5)) mysqli_stmt_close($query5);
+            if (isset($query1))
+                mysqli_stmt_close($query1);
+            if (isset($query2))
+                mysqli_stmt_close($query2);
+            if (isset($query3))
+                mysqli_stmt_close($query3);
+            if (isset($query4))
+                mysqli_stmt_close($query4);
+            if (isset($query5))
+                mysqli_stmt_close($query5);
+            if (isset($query6))
+            mysqli_stmt_close($query6);
+        
             mysqli_close($connection);
             return "Query failed: " . $e->getMessage();
         }

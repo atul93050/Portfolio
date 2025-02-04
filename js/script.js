@@ -12,11 +12,12 @@ document.querySelectorAll('.anchordefault').forEach(anchor => {
         const targetID = this.getAttribute('href').substring(1);
         const targetElement = document.getElementById(targetID);
         window.scrollTo({
-            top: targetElement.offsetTop - 70, 
+            top: targetElement.offsetTop - 70,
             behavior: 'smooth'
         });
     });
 });
+
 
 
 
@@ -252,6 +253,44 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("ContactForm")?.addEventListener("submit", function (event) {
         if (!validateName(contactName, "contact-name-error") || !validateEmail(contactEmail, "contact-email-error") || !validateMessage(contactMessage, "contact-message-error")) {
             event.preventDefault();
+        }
+        else {
+
+            document.getElementById("ContactForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                let formData = new FormData(this);
+
+                fetch("db/message.php", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === "success") {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: data.message
+                            });
+                            document.getElementById("ContactForm").reset();
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: data.message
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'An error occurred. Please try again later.'
+                        });
+                        console.error("Error:", error);
+                    });
+            });
         }
     });
 });

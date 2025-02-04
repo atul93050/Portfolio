@@ -51,7 +51,7 @@ if (is_numeric($TransAmount)) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/x-icon" href="icon/Easy.png">
+    <link rel="icon" type="image/x-icon" href="icon/Khata.png">
     <title>Easy Khata - Add Transaction</title>
 
     <!-- Bootstrap core CSS -->
@@ -108,7 +108,7 @@ if (is_numeric($TransAmount)) {
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="img img-fluid img-circle" src="<?php echo $profilepicture  ?>" width="25">
+                                <img class="img img-fluid rounded-circle" src="<?php echo $profilepicture  ?>" width="25">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="profile.phcol-mdp">Your Profile</a>

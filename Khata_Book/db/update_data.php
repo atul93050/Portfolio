@@ -20,6 +20,9 @@ function update_transaction($id, $trans_id, $amount, $type, $source, $remark)
         //fetch user balance
         $balance = fetch_balance($id);
 
+      
+
+
         //updated balance
         if ($type === "C") {
             $updated_balance = $balance + $amount;

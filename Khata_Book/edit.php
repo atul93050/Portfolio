@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/x-icon" href="icon/Easy.png">
+    <link rel="icon" type="image/x-icon" href="icon/Khata.png">
     <title>Easy Khata - Edit Expenses</title>
 
     <!-- Bootstrap core CSS -->

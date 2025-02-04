@@ -1,18 +1,16 @@
 <?php
-// include("db/session.php");
-// SessionStart();
-// include("db/connection.php");
-// $conn = connection();
-// if ($conn) {
-//   $name = $_POST["name"] ?? null;
-//   $email = $_POST["Email"] ?? null;
-//   $phone = $_POST["Phone"] ?? null;
-//   $address = $_POST["Message"] ?? null;
+include("db/session.php");
+SessionStart();
+include("db/insertdata.php");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = trim($_POST["name"]) ?? null;
+  $email = trim($_POST["Email"]) ?? null;
+  $phone = trim($_POST["Phone"]) ?? null;
+  $message = trim($_POST["Message"]) ?? null;
+  $rememberMe = isset($_POST["rememberMe"]) ? 1 : 0;
 
-
-
-// } else {
-// }
+  insertData($name, $email, $phone, $message, $rememberMe);
+}
 
 $end_date = new DateTime();
 
@@ -42,10 +40,14 @@ $end_date = new DateTime();
 
   <link rel="canonical" href="https://atul-verma.kryotek.in">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=<?php echo filemtime('css/style.css'); ?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 </head>
 
 <body>
@@ -56,7 +58,7 @@ $end_date = new DateTime();
         <a href=""><img src="image/atul.png" alt="Atul Verma logo"></a>
       </div>
       <div class="nav-menu" id="navMenu">
-        <a href="index.php" class="nav-list  anchordefault">Home</a>
+        <a href="/Home" class="nav-list  anchordefault">Home</a>
         <a href="#About-me" class="nav-list  anchordefault">About</a>
         <a href="#Education-Experience" class="nav-list  anchordefault">Education</a>
         <a href="#projects" class="nav-list anchordefault">Projects</a>
@@ -72,7 +74,7 @@ $end_date = new DateTime();
           <div class="modal-content">
             <span class="close-model" id="close-model">&times;</span>
             <h2>Contact Me</h2>
-            <form id="ContactFormModal">
+            <form id="ContactFormModal" method="POST" action="index.php">
               <div class="form-group">
                 <label class="label" for="name">Name :</label>
                 <input class="input" type="text" id="name" name="name" placeholder="Enter your Name">
@@ -241,7 +243,8 @@ $end_date = new DateTime();
                     &#8599;</a>
                 </p>
                 <p class="project-link">
-                  Source Code: <a href="https://abcd-Example.com" target="_blank" rel="noopener noreferrer">View Source
+                  Source Code: <a href="https://github.com/atul93050/Portfolio/tree/main/Khata_Book" target="_blank"
+                    rel="noopener noreferrer">View Source
                     Code &#8599;</a>
                 </p>
               </div>
@@ -353,7 +356,7 @@ $end_date = new DateTime();
 
       <div class="contact-form">
         <h3>Contact Us</h3>
-        <form action="submit_form.php" method="POST" id="ContactForm">
+        <form action="db/message.php" method="POST" id="ContactForm">
           <input type="text" id="ContactName" name="name" placeholder="Your Name" required>
           <span id="contact-name-error" class="error-message"></span>
 
@@ -452,7 +455,7 @@ $end_date = new DateTime();
 
     <!-- Copyright -->
     <section class="footer-copyright">
-      <p>© 2024. All Rights Reserved | Designed by <a href="/" class="footer-copyright-link">Atul Verma</a></p>
+      <p>© 2024. All Rights Reserved | Designed by <a href="/Home" class="footer-copyright-link">Atul Verma</a></p>
     </section>
   </footer>
   <!-- Footer Section End-->
@@ -468,7 +471,7 @@ $end_date = new DateTime();
 
 
   <!-- Main Js -->
-  <script src="js/script.js"></script>
+  <script src="js/script.js?v=<?php echo filemtime('js/script.js'); ?>"></script>
 
 </body>
 

@@ -1,6 +1,7 @@
 <?php
 include "db/connection.php";
 include "db/fetch_userdetails.php";
+include "delete.php";
 session_start();
 $connection = connection();
 if (!isset($_SESSION['user_id'])) {
@@ -23,9 +24,16 @@ $profilepicture = fetch_userphoto($username) ?? "uploads/profile_default.png";
 
 // fetch user transactions 
 
-$data = fetch_transaction_data($username);
+$data = fetch_transaction_data($username) ?? null;
 
-
+$deleteId = $_GET['delete'] ?? null;
+if($deleteId){
+    if(delete_transaction($deleteId,$username)):
+       
+        header("Location: manage_expense.php");
+        
+    endif;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +46,7 @@ $data = fetch_transaction_data($username);
     <meta name="author" content="">
 
     <title>Khata Book - Dashboard</title>
-    <link rel="icon" type="image/x-icon" href="icon/Easy.png">
+    <link rel="icon" type="image/x-icon" href="icon/Khata.png">
 
 
     <!-- Bootstrap core CSS -->
@@ -95,10 +103,10 @@ $data = fetch_transaction_data($username);
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="img img-fluid img-circle" src="<?php echo $profilepicture ?>" width="25">
+                                <img class="img img-fluid rounded-circle" src="<?php echo $profilepicture ?>" width="25">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="profile.phcol-mdp">Your Profile</a>
+                                <a class="dropdown-item" href="profile.php">Your Profile</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="logout.php">Logout</a>
                             </div>
@@ -128,6 +136,7 @@ $data = fetch_transaction_data($username);
                                 </tr>
                             </thead>
                             <tbody class="align-middle text-center">
+                                <?php if(is_array($data)):?>
                                 <?php foreach ($data as $expense): ?>
                                     <?php
                                     $transactionId = $expense[0];
@@ -148,9 +157,9 @@ $data = fetch_transaction_data($username);
                                         <td class="fw-normal mb-1"><?php echo htmlspecialchars($updatedBalance); ?></td>
                                         <td class="text-muted mb-0"><?php echo htmlspecialchars($remark); ?></td>
                                         <td><a href="edit.php?edit=<?php echo urlencode($transactionId); ?>" class="btn btn-link">Edit</a></td>
-                                        <td><a href="manage_expense.php?delete=<?php echo urlencode($transactionId); ?>" class="btn btn-danger">Delete</a></td>
+                                        <td><a href="manage_expense.php?delete=<?php echo urlencode($transactionId); ?>" class="btn btn-danger" id="delete">Delete</a></td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php endforeach; endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -173,6 +182,15 @@ $data = fetch_transaction_data($username);
         $("#menu-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
+        });
+
+        const deleteButton = document.getElementById('delete');
+        deleteButton.addEventListener('click', function(event) {
+            const reply  = confirm("Are you sure ? You want to delete transaction!");
+            if (!reply) {
+                event.preventDefault();
+            }
+
         });
     </script>
     <script>
