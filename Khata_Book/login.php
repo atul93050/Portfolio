@@ -6,8 +6,6 @@ session_start();
 $message = null;
 $username_error = null;
 
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if (!verify_captcha()) {
@@ -50,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $userID;
             $_SESSION['logged_in'] = true;
             // Redirect to dashboard/home
-            header('Location: index.php');
+            header('Location: dashboard.php');
             exit();
           } else {
             $message = "Incorrect Email or Phone or Password. Please try again.";

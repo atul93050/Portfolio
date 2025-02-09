@@ -33,20 +33,17 @@
                 ExpenTrack
             </a>
 
-            <button class="mobile-menu-btn" aria-label="Toggle navigation">
-                ☰
-            </button>
-            <!-- <div class="hamburger" id="hamburger">
+            <div class="hamburger" id="hamburger">
                 <div class="bar" id="bar1"></div>
                 <div class="bar " id="bar2"></div>
                 <div class="bar" id="bar3"></div>
-              </div> -->
+            </div>
 
             <div class="nav-links">
-                <a href="#" class="nav-link">Dashboard</a>
-                <a href="#" class="nav-link">Analytics</a>
-                <a href="#" class="nav-link">Reports</a>
-                <a href="#" class="nav-link">Settings</a>
+                <a href="" class="nav-link">Dashboard</a>
+                <a href="" class="nav-link">Analytics</a>
+                <a href="" class="nav-link">Reports</a>
+                <a href="" class="nav-link">Settings</a>
                 <a href="login.php" class="cta-button">Get Started</a>
             </div>
         </div>
@@ -65,7 +62,7 @@
                 </p>
 
                 <div class="cta-buttons">
-                    <a href="#" class="primary-cta">Get Started Free</a>
+                    <a href="login.php" class="primary-cta">Get Started Free</a>
                     <a href="#" class="secondary-cta">Watch Demo</a>
                 </div>
 
@@ -82,8 +79,7 @@
             </div>
 
             <div class="hero-illustration">
-                <img src="https://via.placeholder.com/500x400?text=Dashboard+Mockup" alt="Expense Tracker Dashboard"
-                    class="dashboard-mockup">
+                <img src="icon/hero-img.jpg" alt="Expense Tracker Dashboard" class="dashboard-mockup">
             </div>
         </div>
     </section>
@@ -177,23 +173,24 @@
             <h2 class="form-title">🌟 We Value Your Feedback!</h2>
 
             <div class="rating-stars">
-                <div class="star">★</div>
-                <div class="star">★</div>
-                <div class="star">★</div>
-                <div class="star">★</div>
-                <div class="star">★</div>
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
             </div>
 
-            <select class="feedback-input">
+            <select class="feedback-input" id="feedbackType">
                 <option>Select Feedback Type</option>
                 <option>Bug Report</option>
                 <option>Feature Request</option>
                 <option>General Feedback</option>
             </select>
 
-            <textarea class="feedback-input" rows="5" placeholder="Share your thoughts..."></textarea>
+            <textarea class="feedback-input" id="feedbackMessage" rows="5"
+                placeholder="Share your thoughts..."></textarea>
 
-            <button class="submit-btn">Submit Feedback</button>
+            <button class="submit-btn" id="SubmitFeedback">Submit Feedback</button>
         </div>
 
         <!-- Testimonials -->
@@ -208,13 +205,7 @@
                 <small>- Sarah J.</small>
             </div>
 
-            <div class="testimonial-card">
-                <p class="testimonial-text">
-                    "Love the intuitive interface and detailed reports."
-                </p>
-                <div class="user-rating">★★★★☆</div>
-                <small>- Mike R.</small>
-            </div>
+
         </div>
     </section>
 
@@ -285,11 +276,34 @@
 
 
     <script>
-        // Mobile Menu Toggle
-        // document.querySelector('.mobile-menu-toggle').addEventListener('click', () => {
-        //     const navLinks = document.querySelector('.nav-links');
-        //     navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        // });
+
+        // toggle menu
+
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+
+            const bar1 = document.getElementById('bar1');
+            const bar2 = document.getElementById('bar2');
+            const bar3 = document.getElementById('bar3');
+
+            if (navMenu.classList.contains('active')) {
+                bar1.style.transform = "rotate(45deg)";
+                bar1.style.transformOrigin = "top left";
+                bar2.style.opacity = "0";
+                bar3.style.transform = "rotate(-45deg)";
+                bar3.style.transformOrigin = "bottom left";
+            } else {
+                bar1.style.transform = "rotate(0)";
+                bar1.style.transformOrigin = "initial";
+                bar2.style.opacity = "1";
+                bar3.style.transform = "rotate(0)";
+                bar3.style.transformOrigin = "initial";
+            }
+        });
+
 
         // Theme Toggle
         // document.querySelector('.theme-toggle').addEventListener('click', () => {
@@ -300,14 +314,21 @@
         // });
 
         // Star Rating Interaction
-        const stars = document.querySelectorAll('.star');
-        stars.forEach((star, index) => {
-            star.addEventListener('click', () => {
-                stars.forEach((s, i) => {
-                    s.classList.toggle('active', i <= index);
+        let selectedRating = 0;
+        const star = document.querySelectorAll('.star');
+        star.forEach(star => {
+            star.addEventListener('click', function () {
+                selectedRating = this.getAttribute("data-value");
+                document.querySelectorAll('.star').forEach(star => {
+                    star.classList.remove('selected');
                 });
             });
+
+
         });
+
+
+
 
         // Loader
         window.addEventListener('DOMContentLoaded', (event) => {

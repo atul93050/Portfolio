@@ -74,7 +74,7 @@ $end_date = new DateTime();
           <div class="modal-content">
             <span class="close-model" id="close-model">&times;</span>
             <h2>Contact Me</h2>
-            <form id="ContactFormModal" method="POST" action="index.php">
+            <form id="ContactFormModal" method="POST" action="">
               <div class="form-group">
                 <label class="label" for="name">Name :</label>
                 <input class="input" type="text" id="name" name="name" placeholder="Enter your Name">

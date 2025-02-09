@@ -1,28 +1,47 @@
 <?php
-include("../db/connection.php");
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user = $_SESSION['user'];
+$user_id = $user['user_id'];
+
+include "../db/connection.php";
+$conn = connection();
 
 // Fetch task details
-if (isset($_GET['id'])) {
-    $stmt = $conn->prepare("SELECT * FROM todo_table WHERE Sno = :id");
-    $stmt->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
+if (isset($_GET['id'])) {  // 'task_id' ko 'id' se replace kiya
+    $stmt = $conn->prepare("SELECT * FROM todo_tasks WHERE task_id = :task_id AND user_id = :user_id");
+    $stmt->bindParam(':task_id', $_GET['id'], PDO::PARAM_INT);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $stmt->execute();
-    $task = $stmt->fetch(PDO::FETCH_ASSOC) ;
-}
-else{
-    $task = null;
+    $task = $stmt->fetch();
+
+    if (!$task) {
+        header("Location: to_do.php");
+        exit();
+    }
+} else {
     header("Location: to_do.php");
+    exit();
 }
 
 // Update task
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $stmt = $conn->prepare("UPDATE todo_table SET Name = :name, Date = :date WHERE Sno = :id");
-    $stmt->bindParam(':name', $_POST['name']);
-    $stmt->bindParam(':date', $_POST['date']);
-    $stmt->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
-    $stmt->execute();
-
-    header("Location: to_do.php");
-    exit();
+    $stmt = $conn->prepare("UPDATE todo_tasks SET task_name = :task_name, due_date = :due_date WHERE task_id = :task_id AND user_id = :user_id");
+    $stmt->bindParam(':task_name', $_POST['task_name']);
+    $stmt->bindParam(':due_date', $_POST['due_date']);
+    $stmt->bindParam(':task_id', $_GET['id'], PDO::PARAM_INT);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    
+    if ($stmt->execute()) {
+        header("Location: to_do.php");
+        exit();
+    } else {
+        echo "Task update failed!";
+    }
 }
 ?>
 
@@ -32,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Todo</title>
-  <style>
-     body {
+    <style>
+        body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
@@ -109,16 +128,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .reset-button:hover {
             background-color: #5a6268;
         }
-  </style>
+    </style>
 </head>
 <body>
-    <main>
+<main>
         <h1>Update Task</h1>
         <form method="POST">
-            <input type="text" name="name" value="<?php echo htmlspecialchars($task['Name'] ?? null); ?>" required>
-            <input type="date" name="date" value="<?php echo htmlspecialchars($task['date'] ?? null); ?>" required>
-            <button type="submit" class="update-button">Update</button>
-            <button type="reset" class="reset-button">Reset</button>
+            <input type="text" name="task_name" value="<?php echo htmlspecialchars($task['task_name']); ?>" required>
+            <input type="date" name="due_date" value="<?php echo htmlspecialchars($task['due_date']); ?>" required>
+            <button type="submit">Update</button>
+            <button type="reset">Reset</button>
         </form>
     </main>
 </body>

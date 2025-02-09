@@ -207,15 +207,23 @@
 }
 
 /* Mobile Menu */
-.mobile-menu-btn {
+
+.hamburger {
     display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
     cursor: pointer;
-    color: var(--dark);
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
 }
 
+
+.hamburger .bar {
+    height: 3px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--dark);
+}
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-links {
@@ -234,8 +242,8 @@
         display: flex;
     }
 
-    .mobile-menu-btn {
-        display: block;
+    .hamburger {
+        display: flex;
     }
 
     .nav-link {
@@ -335,10 +343,9 @@
 
 .hero-illustration {
     position: relative;
-    background: white;
-    border-radius: 1rem;
+
     padding: 2rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+
 }
 
 .dashboard-mockup {
