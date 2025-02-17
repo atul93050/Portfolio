@@ -13,6 +13,7 @@
 <body>
     <div class="container" id="clock">
 
+      <div class="content">
         <span class="hour" id="hour">08</span>
         <span class="colon">:</span>
         <span class="min" id="min">37</span>
@@ -24,6 +25,11 @@
             <span class="pm">PM</span>
             <span class="ml" id="ml">000</span>
         </div>
+      </div>
+        
+        <audio id="tick-sound" src="tick.mp3"></audio>
+
+        <div class="date" id="date"></div>
 
     </div>
     <script src="Digital.js"></script>
