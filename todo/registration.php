@@ -14,6 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $conn = connection();
                 $conn->beginTransaction();
 
+                $stmt1 = $conn->prepare('SELECT * FROM todo_users WHERE email = :email');
+                $stmt1->bindParam(':email', $email);
+                $result = $stmt1->execute();
+                if ($result === true) {
+                    echo "<script>alert('Already User Registered');window.location.href='login.php'</script>";
+
+                }
+
                 // Password hashing for security
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
