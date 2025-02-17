@@ -1,6 +1,13 @@
 <?php
 session_start();
 $user = $_SESSION['user'];
+if ($user){
+   $user_id = $user['user_id'];
+
+} else {
+    header('Location: login.php');
+    exit;
+}
 $user_id = $user['user_id'];
 include "../db/connection.php";
 $conn = connection();
@@ -42,6 +49,7 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <main>
         <h1>Todo List</h1>
+        <h3><?php echo "Welcome, " . $user['username'] . "!" ?></h3>
         <form method="POST">
             <input type="text" name="task_name" placeholder="Task Name" required>
             <input type="date" name="due_date" required>
