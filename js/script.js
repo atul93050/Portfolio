@@ -315,26 +315,44 @@ const project = [
         image: "clock/Analog/Analog.png",
         name: "Analog Clock",
         description: "A Analog Clock by HTML, CSS and JS",
-        link: "clock/Analog/Analog.html"
+        link: "clock/Analog/Analog.php"
     },
     {
         image: "clock/Digital/Digital.png",
         name: "Digital Clock",
         description: "A Digital Clock by HTML, CSS and JS",
-        link: "clock/Digital/Digital.html"
+        link: "clock/Digital/Digital.php"
     },
-    {
-        image: "tic-toc/Tic-toc.png",
-        name: "Tic-Toc-Toe",
-        description: "A Tic-Toc-Toe Game by HTML, CSS and JS",
-        link: "tic-toc/tictoc.html"
-    },
+    // {
+    //     image: "tic-toc/Tic-toc.png",
+    //     name: "Tic-Toc-Toe",
+    //     description: "A Tic-Toc-Toe Game by HTML, CSS and JS",
+    //     link: "tic-toc/tictoc.html"
+    // },
     {
         image: "image/todo.png",
         name: "To-Do App List",
         description: "A To-Do App by HTML, CSS, JS, PHP and MySQL",
         link: "todo/to_do.php"
     },
+    {
+        image : "image/roll-dice.png",
+        name : "Roll Dice",
+        description : "A Roll Dice Game by HTML, CSS and JS",
+        link : "Assignment/rolling_dice.php"
+    },
+    {
+        image : "image/name-game.png",
+        name : "Name Game",
+        description : "A Name Game by HTML, CSS and JS",
+        link : "Assignment/name-game.php"
+    },
+    {
+        image : "image/mouse-move.png",
+        name : "Mouse Move",
+        description : "A Mouse Move Game by HTML, CSS and JS",
+        link : "MouseMove/mouse.php"
+    }
 ];
 
 const project_cards = document.getElementById("project-cards");

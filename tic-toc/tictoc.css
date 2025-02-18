@@ -147,6 +147,10 @@ button:hover {
   grid-column: 1/4;
   grid-row: 1/4;
 }
+input[type="radio"] {
+  margin: 0 1em;
+  accent-color: var(--player1);
+}
 h3{
   padding: 1em;
 }

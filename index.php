@@ -295,6 +295,34 @@ $end_date = new DateTime();
 
             </div>
           </div>
+          <div class="picture-item" data-category="js">
+            <div class="card">
+              <img src="image/qr-code-generator.jpg" alt="QR Code Generator">
+              <div class="card-body">
+                <h5>QR Code Generator</h5>
+                <p>
+                  <strong>Description:</strong>
+                </p>
+                <ul>
+                  <li>Generate QR Codes Instantly</li>
+                  <li>Download QR Code as an Image</li>
+                  <li>Custom Input for URL/Text</li>
+                  <li>Simple and Responsive UI</li>
+                </ul>
+                <p class="project-link">
+                  Live Demo: <a href="QrCodeGenerator/index.php" target="_blank" rel="noopener noreferrer">Visit Project
+                    &#8599;</a>
+                </p>
+                <p class="project-link">
+                  Source Code: <a href="https://github.com/your-repo/qr-code-generator" target="_blank"
+                    rel="noopener noreferrer">View Source Code &#8599;</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
 
         </div>
       </div>

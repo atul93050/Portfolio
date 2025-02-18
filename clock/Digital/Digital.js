@@ -14,7 +14,14 @@ function clock() {
     let mll = date.getMilliseconds();
 
     updateTheme(h);
+    if (h < 10) {
 
+        hour.innerHTML = '0' + h;
+
+    }
+    else {
+        hour.innerHTML = h;
+    }
 
 
     if (h >= 12) {
@@ -26,14 +33,7 @@ function clock() {
 
 
 
-    if (h < 10) {
-
-        hour.innerHTML = '0' + h;
-
-    }
-    else {
-        hour.innerHTML = h;
-    }
+  
     if (s < 10) {
 
 
@@ -77,4 +77,4 @@ updateDate();
 
 clock();
 setInterval(clock, 1);
-setInterval(playTickSound, 1);
+setInterval(playTickSound, 1000);

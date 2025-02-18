@@ -1,8 +1,8 @@
 <?php
 const DB_HOST = 'localhost';
-const DB_USER = 'root';
-const DB_PASS = '';
-const DB_NAME = 'epentrack';
+const DB_USER = 'u510762903_AtV';
+const DB_PASS = 'AtV@tRVbyEv4R^UntyM9';
+const DB_NAME = 'u510762903_AtV';
 
 function connection()
 {

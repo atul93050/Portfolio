@@ -11,45 +11,149 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #333;
-            color: white;
+            background-color: #222;
             font-family: Arial, sans-serif;
         }
 
         .container {
             display: flex;
-            gap: 20px;
-            font-size: 2rem;
+            gap: 15px;
+            padding: 20px;
+            background: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
         .segment {
-            display: inline-flex;
-            flex-direction: column;
+            display: flex;
             gap: 5px;
-            font-size: 3rem;
-            color: #FF0000;
         }
 
-     
-       
+        .digit {
+            position: relative;
+            width: 60px;
+            height: 100px;
+        }
+
+        .segment-part {
+            position: absolute;
+            background: #400;
+            transition: background 0.3s ease;
+        }
+
+        .segment-part.active {
+            background: #f00;
+            box-shadow: 0 0 15px rgba(255,0,0,0.5);
+        }
+
+        /* Horizontal segments */
+        .a, .d, .g {
+            width: 50px;
+            height: 8px;
+            left: 5px;
+        }
+
+        /* Vertical segments */
+        .b, .c, .e, .f {
+            width: 8px;
+            height: 40px;
+        }
+
+        /* Positioning */
+        .a { top: 5px; }
+        .b { top: 8px; right: 5px; }
+        .c { bottom: 8px; right: 5px; }
+        .d { bottom: 5px; }
+        .e { bottom: 8px; left: 5px; }
+        .f { top: 8px; left: 5px; }
+        .g { top: 50%; transform: translateY(-50%); }
+
+        .colon {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            color: #f00;
+            font-size: 2rem;
+            margin: 0 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="hour segment">
+        <div class="segment hour">
             <div class="digit"></div>
             <div class="digit"></div>
         </div>
-        <div class="minute segment">
+        <div class="colon">:</div>
+        <div class="segment minute">
             <div class="digit"></div>
             <div class="digit"></div>
         </div>
-        <div class="second segment">
+        <div class="colon">:</div>
+        <div class="segment second">
             <div class="digit"></div>
             <div class="digit"></div>
         </div>
     </div>
 
- 
+    <script>
+        const segmentsMap = {
+            0: ['a', 'b', 'c', 'd', 'e', 'f'],
+            1: ['b', 'c'],
+            2: ['a', 'b', 'g', 'e', 'd'],
+            3: ['a', 'b', 'g', 'c', 'd'],
+            4: ['f', 'g', 'b', 'c'],
+            5: ['a', 'f', 'g', 'c', 'd'],
+            6: ['a', 'f', 'g', 'c', 'd', 'e'],
+            7: ['a', 'b', 'c'],
+            8: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+            9: ['a', 'b', 'c', 'd', 'f', 'g']
+        };
+
+        function createSegment(part) {
+            const div = document.createElement('div');
+            div.className = `segment-part ${part}`;
+            return div;
+        }
+
+        function updateDigit(digitElement, number) {
+            // Clear existing segments
+            digitElement.innerHTML = '';
+            
+            // Create all 7 segments
+            'abcdefg'.split('').forEach(part => {
+                const segment = createSegment(part);
+                if(segmentsMap[number].includes(part)) {
+                    segment.classList.add('active');
+                }
+                digitElement.appendChild(segment);
+            });
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const time = [
+                now.getHours().toString().padStart(2, '0'),
+                now.getMinutes().toString().padStart(2, '0'),
+                now.getSeconds().toString().padStart(2, '0')
+            ];
+
+            document.querySelectorAll('.segment').forEach((segment, i) => {
+                const digits = segment.querySelectorAll('.digit');
+                const numbers = time[i].split('');
+                digits.forEach((digit, j) => updateDigit(digit, numbers[j]));
+            });
+        }
+
+        // Initialize digits
+        document.querySelectorAll('.digit').forEach(digit => {
+            updateDigit(digit, 0);
+        });
+
+        // Update every second
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial update
+    </script>
 </body>
 </html>
