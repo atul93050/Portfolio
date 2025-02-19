@@ -341,17 +341,23 @@ const project = [
         description : "A Roll Dice Game by HTML, CSS and JS",
         link : "Assignment/rolling_dice.php"
     },
+    // {
+    //     image : "image/name-game.png",
+    //     name : "Name Game",
+    //     description : "A Name Game by HTML, CSS and JS",
+    //     link : "Assignment/name-game.php"
+    // },
     {
-        image : "image/name-game.png",
-        name : "Name Game",
-        description : "A Name Game by HTML, CSS and JS",
-        link : "Assignment/name-game.php"
-    },
-    {
-        image : "image/mouse-move.png",
+        image : "image/cusor.png",
         name : "Mouse Move",
         description : "A Mouse Move Game by HTML, CSS and JS",
         link : "MouseMove/mouse.php"
+    },
+    {
+        image : "image/qrCode.png",
+        name : "Qr Code Generator",
+        description : "A Qr Code Generator by HTML, CSS and JS",
+        link : "QrCodeGenerator/index.php"
     }
 ];
 
